@@ -1,4 +1,4 @@
-`FROM ubuntu:focal
+FROM ubuntu:focal
 MAINTAINER Zim Kalinowski
 
 # this is from qemu build docker
