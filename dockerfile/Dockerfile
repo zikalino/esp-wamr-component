@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+`FROM ubuntu:focal
 MAINTAINER Zim Kalinowski
 
 # this is from qemu build docker
@@ -41,10 +41,13 @@ WORKDIR /esp-idf
 RUN ./install.sh
 
 # install ESP IDF tools including pytest
-RUN . ./export.sh && python3 ./tools/idf_tools.py install-python-env --features pytest
+RUN . ./export.sh && python3 ./tools/idf_tools.py install-python-env --features pytest,ci
+
+# XXXX - NEW
+RUN . ./export.sh && pip3 install jsonschema
 
 # build pytest apps
-RUN . ./export.sh && python3 tools/ci/build_pytest_apps.py . --target esp32 -m qemu -vv
+RUN . ./export.sh && python3 tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
 
 # set path up front for QEMU binaries target destination
 ENV PATH=/qemu-xtensa:${PATH}
@@ -62,6 +65,6 @@ RUN . ./export.sh && pytest --target esp32 -m qemu --embedded-services idf,qemu
 # additional python tools that maybe useful for some scripts
 RUN pip install matplotlib
 RUN pip install pandas
-RUN pip install python-gitlab==3.0.0
 RUN pip install jira==3.2.0
 RUN pip install PyGithub==1.54.1
+RUN pip3 install python-gitlab==3.0.0
