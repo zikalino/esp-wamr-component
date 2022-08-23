@@ -4,12 +4,12 @@ FROM espressif/idf:latest
 # this is from qemu build docker
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libglib2.0-dev \
+    libgcrypt-dev \
+    libdbus-1-dev \
+    python3-pip \
     autoconf \
     libssl-dev \
     libpixman-1-dev \
-    libgcrypt-dev \
-    python3-pip \
-    libdbus-1-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # build pytest apps
