@@ -3,10 +3,6 @@ FROM espressif/idf:latest
 
 # this is from qemu build docker
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git \
-    wget \
-    curl \
-    zip \
     build-essential \
     zlib1g-dev \
     pkg-config \
