@@ -4,7 +4,6 @@ FROM espressif/idf:latest
 # this is from qemu build docker
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libglib2.0-dev \
-    binutils-dev \
     autoconf \
     libtool \
     libssl-dev \
