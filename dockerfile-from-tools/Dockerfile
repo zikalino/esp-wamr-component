@@ -9,20 +9,12 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libtool \
     libssl-dev \
     libpixman-1-dev \
-    flex \
-    bison \
-    libncurses5-dev \
-    libreadline-dev \
-    libffi-dev \
-    libbz2-dev \
-    ninja-build \
     libgcrypt-dev \
     python3 \
     python3-venv \
     python3-pip \
     libdbus-1-dev \
     libusb-1.0-0-dev \
-    cmake \
   && rm -rf /var/lib/apt/lists/*
 
 # build pytest apps
