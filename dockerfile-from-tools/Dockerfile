@@ -7,7 +7,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libgcrypt-dev \
     libdbus-1-dev \
     python3-pip \
-    libssl-dev \
     libpixman-1-dev \
   && rm -rf /var/lib/apt/lists/*
 
