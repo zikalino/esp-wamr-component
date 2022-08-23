@@ -5,7 +5,6 @@ FROM espressif/idf:latest
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libglib2.0-dev \
     autoconf \
-    libtool \
     libssl-dev \
     libpixman-1-dev \
     libgcrypt-dev \
