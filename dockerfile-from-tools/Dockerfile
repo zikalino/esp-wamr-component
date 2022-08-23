@@ -3,9 +3,6 @@ FROM espressif/idf:latest
 
 # this is from qemu build docker
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    build-essential \
-    zlib1g-dev \
-    pkg-config \
     libglib2.0-dev \
     binutils-dev \
     autoconf \
