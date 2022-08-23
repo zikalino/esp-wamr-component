@@ -8,11 +8,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libssl-dev \
     libpixman-1-dev \
     libgcrypt-dev \
-    python3 \
-    python3-venv \
     python3-pip \
     libdbus-1-dev \
-    libusb-1.0-0-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # build pytest apps
