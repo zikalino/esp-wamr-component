@@ -9,10 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     container: zimkal/qemu2
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Fetch head and base refs
+        # This is necessary for pre-commit to check the changes in the PR branch
+        run: |
+          git fetch origin ${{ github.base_ref }}:base_ref
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_ref
+
       - run: |
-          echo Run QEMU jobs
+          echo Run QEMU jobs - pwd
           pwd
-          cd /opt/esp/idf
-          . ./export.sh
+          cd /opt/esp/idf && . ./export.sh
+          echo pwd again
+          pwd
           pytest --target esp32 -m qemu --embedded-services idf,qemu
         name: Run in container
