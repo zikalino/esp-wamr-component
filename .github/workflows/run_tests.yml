@@ -11,5 +11,8 @@ jobs:
     steps:
       - run: |
           echo Run QEMU jobs
+          pwd
+          cd /opt/esp/idf
+          . ./export.sh
           pytest --target esp32 -m qemu --embedded-services idf,qemu
         name: Run in container
