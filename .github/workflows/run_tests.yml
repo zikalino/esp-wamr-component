@@ -17,6 +17,8 @@ jobs:
       #    git fetch origin ${{ github.base_ref }}:base_ref
       #    git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_ref
 
+      - name: Checkout
+        uses: actions/checkout@v2
       - run: |
           echo Run QEMU jobs - pwd
           pwd
