@@ -24,6 +24,9 @@ jobs:
           pwd
           . /opt/esp/idf/export.sh
           echo pwd again
+          current_path=$(pwd)
+          cd /opt/esp/idf/examples
+          ln -s /$(current_path)/src external_tests
           pwd
           ls -al
           pytest --target esp32 -m qemu --embedded-services idf,qemu
