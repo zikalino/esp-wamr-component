@@ -20,7 +20,7 @@ jobs:
       - run: |
           echo Run QEMU jobs - pwd
           pwd
-          cd /opt/esp/idf && . ./export.sh
+          source /opt/esp/idf/export.sh
           echo pwd again
           pwd
           pytest --target esp32 -m qemu --embedded-services idf,qemu
