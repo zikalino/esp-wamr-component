@@ -5,15 +5,11 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
-  run_hello_world_test:
+  container:
     runs-on: ubuntu-latest
+    container: zimkal/qemu2
     steps:
-      - name: Pull Docker Container
-        run: docker pull zimkal/qemu2
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Fetch head and base refs
-        # This is necessary for pre-commit to check the changes in the PR branch
-        run: |
-          git fetch origin ${{ github.base_ref }}:base_ref
-          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_ref
+      - run: |
+          echo This job does specify a container.
+          echo It runs in the container instead of the VM.
+        name: Run in container
