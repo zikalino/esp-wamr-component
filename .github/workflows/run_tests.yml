@@ -10,6 +10,6 @@ jobs:
     container: zimkal/qemu2
     steps:
       - run: |
-          echo This job does specify a container.
-          echo It runs in the container instead of the VM.
+          echo Run QEMU jobs
+          pytest --target esp32 -m qemu --embedded-services idf,qemu
         name: Run in container
