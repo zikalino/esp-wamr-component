@@ -15,7 +15,7 @@ set(WAMR_BUILD_PLATFORM "esp-idf")
 set(WAMR_ROOT_DIR "/esp-wamr-component/wasm-micro-runtime")
 
 # the rest of stuff
-include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
+# include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 
 
 project(hello_world)
