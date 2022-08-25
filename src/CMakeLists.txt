@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 # WAMR definitions
 # set(wasm_inc "${WAMR_ROOT_DIR}/core/iwasm/include"
 #              "${WAMR_ROOT_DIR}/core/iwasm/libraries/libc-wasi/"
-             "${WAMR_ROOT_DIR}/core/iwasm/common")
+#             "${WAMR_ROOT_DIR}/core/iwasm/common")
 # add_definitions(-DWASM_ALIGN_SIZE=4)
 # set (WAMR_BUILD_TARGET "XTENSA")
 # set(WAMR_BUILD_INTERP 1)
