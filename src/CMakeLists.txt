@@ -2,6 +2,8 @@
 # CMakeLists in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.16)
 
+set(WAMR_ROOT_DIR "/esp-wamr-component/wasm-micro-runtime")
+
 # the rest of stuff
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
@@ -9,7 +11,6 @@ project(hello_world)
 
 
 # WAMR cmake scripts
-set(WAMR_ROOT_DIR "/esp-wamr-component/wasm-micro-runtime")
 set(wasm_inc "${WAMR_ROOT_DIR}/core/iwasm/include"
              "${WAMR_ROOT_DIR}/core/iwasm/libraries/libc-wasi/"
              "${WAMR_ROOT_DIR}/core/iwasm/common")
