@@ -21,7 +21,7 @@ include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 add_library(wamrlib ${WAMR_RUNTIME_LIB_SOURCE})
 
 # include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-include(main/hello_world_main.c)
+include("main/CMakeLists.txt")
 
 target_link_libraries(wamrlib)
 
