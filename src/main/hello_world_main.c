@@ -12,8 +12,12 @@
 #include "esp_flash.h"
 #include "esp_pthread.h"
 
+#include "wasm_export.h"
+
 void app_main(void)
 {
+    RuntimeInitArgs init_args;
+
     printf("Hello world!\n");
 
     /* Print chip information */
@@ -43,5 +47,9 @@ void app_main(void)
     }
     printf("Restarting now.\n");
     fflush(stdout);
+
+    // TRY TO INCLUDE WAMR
+    wasm_runtime_full_init(&init_args)
+
     esp_restart();
 }
