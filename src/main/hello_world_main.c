@@ -50,7 +50,7 @@ void app_main(void)
     fflush(stdout);
 
     // TRY TO INCLUDE WAMR
-    wasm_runtime_full_init(&init_args)
+    wasm_runtime_full_init(&init_args);
 
     esp_restart();
 }
