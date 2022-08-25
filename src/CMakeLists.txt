@@ -11,7 +11,7 @@ set(wasm_inc "${WAMR_ROOT_DIR}/core/iwasm/include"
 add_definitions(-DWASM_ALIGN_SIZE=4)
 set (WAMR_BUILD_TARGET "XTENSA")
 set(WAMR_BUILD_INTERP 1)
-
+set(WAMR_BUILD_PLATFORM "esp-idf")
 
 include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 add_library(wamrlib ${WAMR_RUNTIME_LIB_SOURCE})
