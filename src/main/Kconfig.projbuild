@@ -1,0 +1,28 @@
+menu "WAMR Basic Example Configuration"
+
+    config WAMR_APP_STACK_SIZE
+        int "WAMR application stack size"
+        default 32786
+        help
+            WAMR webassembly application stack size.
+
+    config WAMR_APP_HEAP_SIZE
+        int "WAMR application heap size"
+        default 32786
+        help
+            WAMR webassembly application heap size.
+
+    choice WAMR_APP_TEST_BIN_FORMAT
+        prompt "Test binary format"
+        default WAMR_APP_TEST_BIN_WASM
+
+        config WAMR_APP_TEST_BIN_WASM
+            bool "WASM"
+            depends on WAMR_ENABLE_INTERP
+
+        config WAMR_APP_TEST_BIN_AOT
+            bool "AOT"
+            depends on WAMR_ENABLE_AOT
+    endchoice
+
+endmenu

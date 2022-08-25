@@ -1,4 +1,11 @@
-idf_component_register(SRCS "hello_world_main.c"
-                    INCLUDE_DIRS "")
+set(srcs "hello_world_main.c")
 
-target_compile_options(${COMPONENT_LIB} PRIVATE "-Wno-format")
+if(CONFIG_WAMR_APP_TEST_BIN_WASM)
+set(test_bin "test.wasm")
+else()
+set(test_bin "test.aot")
+endif()
+
+idf_component_register(SRCS "${srcs}"
+                       INCLUDE_DIRS "."
+                       EMBED_TXTFILES "${test_bin}")
