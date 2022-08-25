@@ -18,3 +18,5 @@ set (WAMR_BUILD_TARGET "XTENSA")
 set(WAMR_BUILD_INTERP 1)
 set(WAMR_BUILD_PLATFORM "esp-idf")
 
+# try to include wamr subfolder
+include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
