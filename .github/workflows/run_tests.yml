@@ -5,33 +5,27 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
-  pre_commit_check:
+  container:
     runs-on: ubuntu-latest
+    container:
+      image: zimkal/qemu2
+      options: --user root
     steps:
+      #- name: Fetch head and base refs
+      #  # This is necessary for pre-commit to check the changes in the PR branch
+      #  run: |
+      #    git fetch origin ${{ github.base_ref }}:base_ref
+      #    git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_ref
+
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Fetch head and base refs
-        # This is necessary for pre-commit to check the changes in the PR branch
-        run: |
-          git fetch origin ${{ github.base_ref }}:base_ref
-          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_ref
-      - name: Set up Python environment
-        uses: actions/setup-python@master
-        with:
-          python-version: v3.7
-      - name: Install python packages
-        run: |
-          pip install pre-commit
-          pre-commit install-hooks
-      - name: Run pre-commit and check for any changes
-        run: |
-          echo "Commits being checked:"
-          git log --oneline --no-decorate base_ref..pr_ref
-          echo ""
-          if ! pre-commit run --from-ref base_ref --to-ref pr_ref --show-diff-on-failure ; then
-            echo ""
-            echo "::notice::It looks like the commits in this PR have been made without having pre-commit hooks installed."
-            echo "::notice::Please see https://docs.espressif.com/projects/esp-idf/en/latest/esp32/contribute/install-pre-commit-hook.html for instructions."
-            echo ""
-            exit 1
-          fi
+      - run: |
+          echo Run QEMU jobs - pwd
+          pwd
+          . /opt/esp/idf/export.sh
+          echo pwd again
+          pwd
+          python3 /opt/esp/idf/tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
+          ls -al
+          pytest --target esp32 -m qemu --embedded-services idf,qemu --build-dir=build_esp32_default
+        name: Run in container
