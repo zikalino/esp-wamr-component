@@ -15,7 +15,7 @@ include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 set(WAMR_ROOT_DIR "/esp-wamr-component/wasm-micro-runtime")
 
 # the rest of stuff
-add)subdirectory (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
+add_subdirectory(${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 
 
 project(hello_world)
