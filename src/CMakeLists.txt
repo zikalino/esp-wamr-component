@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 
 # the rest of stuff
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 project(hello_world)
 
 
@@ -19,6 +20,5 @@ set(WAMR_BUILD_INTERP 1)
 set(WAMR_BUILD_PLATFORM "esp-idf")
 
 # try to include wamr subfolder
-include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 
 link_directories(${WAMR_ROOT_DIR})
