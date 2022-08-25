@@ -20,4 +20,4 @@ include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
 target_link_libraries(wamrlib)
 
-project(hello_world)
+# project(hello_world)
