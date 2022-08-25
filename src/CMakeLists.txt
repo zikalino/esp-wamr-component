@@ -9,6 +9,7 @@ set(wasm_inc "${WAMR_ROOT_DIR}/core/iwasm/include"
 # WAMR cmake scripts
 
 add_definitions(-DWASM_ALIGN_SIZE=4)
+set (WAMR_BUILD_TARGET "XTENSA")
 
 include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 add_library(wamrlib ${WAMR_RUNTIME_LIB_SOURCE})
