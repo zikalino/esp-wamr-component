@@ -26,6 +26,14 @@ jobs:
           echo pwd again
           pwd
           echo "===================================================================="
+          ls /__w
+          echo "===================================================================="
+          ls /__w/esp-wamr-component
+          echo "===================================================================="
+          ls /__w/esp-wamr-component/esp-wamr-component
+          echo "===================================================================="
+          ls /__w/esp-wamr-component/esp-wamr-component/wasm-micro-runtime
+          echo "===================================================================="
           ls /__w/esp-wamr-component/esp-wamr-component/wasm-micro-runtime/core/iwasm/include
           python3 /opt/esp/idf/tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
           ls -al
