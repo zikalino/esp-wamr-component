@@ -12,7 +12,7 @@
 #include "esp_flash.h"
 #include "esp_pthread.h"
 
-// XXX - temporary, have to figure out
+// XXX - temporary, have to figure out - XXX TEST
 #include "/esp-wamr-component/wasm-micro-runtime/core/iwasm/include/wasm_export.h"
 
 void app_main(void)
