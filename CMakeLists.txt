@@ -16,7 +16,8 @@ endif()
 set(incs ${wasm_inc} "include")
 
 idf_component_register(SRCS ${srcs}
-                       INCLUDE_DIRS ${incs})
+                       INCLUDE_DIRS ${incs}
+                       REQUIRES esp_timer)
 
 # WAMR Configuration
 
