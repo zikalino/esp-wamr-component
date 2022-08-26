@@ -1,1 +1,4 @@
 
+[submodule "wasm-micro-runtime"]
+	path = wasm-micro-runtime
+	url = https://github.com/zikalino/wasm-micro-runtime.git
