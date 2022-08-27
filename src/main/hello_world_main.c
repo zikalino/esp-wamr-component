@@ -13,7 +13,7 @@
 #include "esp_pthread.h"
 
 // XXX - temporary, have to figure out
-#include "wasm-micro-runtime/core/iwasm/include/wasm_export.h"
+#include "wasm_export.h"
 
 void app_main(void)
 {
