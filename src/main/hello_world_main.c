@@ -60,6 +60,8 @@ void app_main(void)
             else
             {
                 const char *exception;
+                int app_argc = 0;
+                char **app_argv = {NULL, };
 
                 printf("WASM runtime instantiate module succeded");
 
