@@ -35,6 +35,9 @@ void app_main(void)
         const int test_bin_size = test_bin_end - test_bin_start - 1;
         uint8_t *load_buffer;
         char error_buf[128];
+         wasm_module_t wasm_module;
+        wasm_module_inst_t wasm_module_inst;
+
         load_buffer = malloc(test_bin_size);
         memcpy(load_buffer, test_bin_start, test_bin_size);
 
@@ -48,6 +51,29 @@ void app_main(void)
         else
         {
             printf("Module loaded correctly");
+            /* instantiate the module */
+            if (!(wasm_module_inst = wasm_runtime_instantiate(
+                    wasm_module, CONFIG_WAMR_APP_STACK_SIZE, CONFIG_WAMR_APP_HEAP_SIZE,
+                    error_buf, sizeof(error_buf)))) {
+                printf("WASM module instantiation failed!");
+            }
+            else
+            {
+                const char *exception;
+
+                printf("WASM runtime instantiate module succeded");
+
+                /* invoke the main function */
+                wasm_application_execute_main(wasm_module_inst, app_argc, app_argv);
+                if ((exception = wasm_runtime_get_exception(wasm_module_inst))) {
+                    printf("Exception during execution of WASM Module!");
+                }
+
+                printf("WASM runtime execute app's main function succeded");
+
+                /* destroy the module instance */
+                wasm_runtime_deinstantiate(wasm_module_inst);
+            }
         }
     }
 
