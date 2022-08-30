@@ -19,6 +19,39 @@ void app_main(void)
 {
     RuntimeInitArgs init_args;
 
+    // TRY TO INCLUDE WAMR
+    memset(&init_args, 0, sizeof(RuntimeInitArgs));
+
+    init_args.mem_alloc_type = Alloc_With_Allocator;
+    init_args.mem_alloc_option.allocator.malloc_func = malloc;
+    init_args.mem_alloc_option.allocator.realloc_func = realloc;
+    init_args.mem_alloc_option.allocator.free_func = free;
+    if (!wasm_runtime_full_init(&init_args))
+    {
+        printf("WASM runtime init failed!")
+    }
+    else
+    {
+        const int test_bin_size = test_bin_end - test_bin_start - 1;
+        uint8_t *load_buffer;
+        char error_buf[128];
+        load_buffer = malloc(test_bin_size);
+        memcpy(load_buffer, test_bin_start, test_bin_size);
+
+        printf("WASM runtime initialized")
+    /* load WASM module */
+        if (!(wasm_module = wasm_runtime_load(load_buffer, test_bin_size,
+                                            error_buf, sizeof(error_buf))))
+        {
+            printf("Module loading failed!")
+        }
+        else
+        {
+            printf("Module loaded correctly")
+        }
+    }
+
+    // standard hello world application here...
     printf("Hello world!\n");
 
     /* Print chip information */
@@ -49,8 +82,6 @@ void app_main(void)
     printf("Restarting now.\n");
     fflush(stdout);
 
-    // TRY TO INCLUDE WAMR
-    wasm_runtime_full_init(&init_args);
 
     esp_restart();
 }
