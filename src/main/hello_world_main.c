@@ -21,6 +21,9 @@
 
 #include "wasm_export.h"
 
+extern const uint8_t test_bin_start[] asm("_binary_test_wasm_start");
+extern const uint8_t test_bin_end[]   asm("_binary_test_wasm_end");
+
 void app_main(void)
 {
     RuntimeInitArgs init_args;
