@@ -11,33 +11,12 @@ jobs:
       image: zimkal/qemu2
       options: --user root
     steps:
-      #- name: Fetch head and base refs
-      #  # This is necessary for pre-commit to check the changes in the PR branch
-      #  run: |
-      #    git fetch origin ${{ github.base_ref }}:base_ref
-      #    git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_ref
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
       - run: |
-          echo Run QEMU jobs - pwd
-          pwd
           . /opt/esp/idf/export.sh
-          echo pwd again
-          pwd
-          echo "===================================================================="
-          ls /__w
-          echo "===================================================================="
-          ls /__w/esp-wamr-component
-          echo "===================================================================="
-          ls /__w/esp-wamr-component/esp-wamr-component
-          echo "===================================================================="
-          ls /__w/esp-wamr-component/esp-wamr-component/wasm-micro-runtime
-          echo "===================================================================="
-          ls /__w/esp-wamr-component/esp-wamr-component/wasm-micro-runtime/core/iwasm/include
           python3 /opt/esp/idf/tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
-          ls -al
           pytest --target esp32 -m qemu --embedded-services idf,qemu --build-dir=build_esp32_default
         name: Run in container
