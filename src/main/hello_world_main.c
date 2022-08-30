@@ -55,16 +55,16 @@ void app_main(void)
         if (!(wasm_module = wasm_runtime_load(load_buffer, test_bin_size,
                                             error_buf, sizeof(error_buf))))
         {
-            printf("Module loading failed!");
+            printf("Module loading failed!\n");
         }
         else
         {
-            printf("Module loaded correctly");
+            printf("Module loaded correctly\n");
             /* instantiate the module */
             if (!(wasm_module_inst = wasm_runtime_instantiate(
                     wasm_module, CONFIG_WAMR_APP_STACK_SIZE, CONFIG_WAMR_APP_HEAP_SIZE,
                     error_buf, sizeof(error_buf)))) {
-                printf("WASM module instantiation failed!");
+                printf("WASM module instantiation failed! %s\n", error_buf);
             }
             else
             {
@@ -72,15 +72,15 @@ void app_main(void)
                 int app_argc = 0;
                 char **app_argv = {NULL, };
 
-                printf("WASM runtime instantiate module succeded");
+                printf("WASM runtime instantiate module succeded\n");
 
                 /* invoke the main function */
                 wasm_application_execute_main(wasm_module_inst, app_argc, app_argv);
                 if ((exception = wasm_runtime_get_exception(wasm_module_inst))) {
-                    printf("Exception during execution of WASM Module!");
+                    printf("Exception during execution of WASM Module!\n");
                 }
 
-                printf("WASM runtime execute app's main function succeded");
+                printf("WASM runtime execute app's main function succeded\n");
 
                 /* destroy the module instance */
                 wasm_runtime_deinstantiate(wasm_module_inst);
