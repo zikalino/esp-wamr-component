@@ -28,7 +28,7 @@ void app_main(void)
     init_args.mem_alloc_option.allocator.free_func = free;
     if (!wasm_runtime_full_init(&init_args))
     {
-        printf("WASM runtime init failed!")
+        printf("WASM runtime init failed!");
     }
     else
     {
@@ -38,16 +38,16 @@ void app_main(void)
         load_buffer = malloc(test_bin_size);
         memcpy(load_buffer, test_bin_start, test_bin_size);
 
-        printf("WASM runtime initialized")
+        printf("WASM runtime initialized");
     /* load WASM module */
         if (!(wasm_module = wasm_runtime_load(load_buffer, test_bin_size,
                                             error_buf, sizeof(error_buf))))
         {
-            printf("Module loading failed!")
+            printf("Module loading failed!");
         }
         else
         {
-            printf("Module loaded correctly")
+            printf("Module loaded correctly");
         }
     }
 
