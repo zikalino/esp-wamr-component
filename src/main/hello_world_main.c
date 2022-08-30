@@ -5,6 +5,10 @@
  */
 
 #include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -12,7 +16,9 @@
 #include "esp_flash.h"
 #include "esp_pthread.h"
 
-// XXX - temporary, have to figure out
+#include "esp_log.h"
+#include "esp_system.h"
+
 #include "wasm_export.h"
 
 void app_main(void)
