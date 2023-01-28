@@ -1,4 +1,4 @@
-name: Check pre-commit rules
+name: Run WASM Hello World in QEMU
 
 on:
   pull_request:
