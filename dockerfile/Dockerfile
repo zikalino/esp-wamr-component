@@ -9,12 +9,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libpixman-1-dev \
   && rm -rf /var/lib/apt/lists/*
 
-# build pytest apps
-WORKDIR /opt/esp/idf
-
-# install ESP IDF tools including pytest
-RUN . ./export.sh && python3 ./tools/idf_tools.py install-python-env --features pytest,ci
-
 # set path up front for QEMU binaries target destination
 ENV PATH=/qemu-xtensa:${PATH}
 
@@ -25,9 +19,12 @@ RUN cd / && git clone https://github.com/espressif/qemu.git --recursive
 RUN mkdir /qemu-xtensa && cd /qemu-xtensa && ../qemu/configure --prefix=`pwd`/root --target-list=xtensa-softmmu,xtensaeb-softmmu
 RUN cd /qemu-xtensa && make install
 
-RUN . ./export.sh && python3 /opt/esp/idf/tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
-
+# build pytest apps
 WORKDIR /opt/esp/idf
+
+# install ESP IDF tools including pytest
+RUN . ./export.sh && python3 ./tools/idf_tools.py install-python-env --features pytest,ci
+RUN . ./export.sh && python3 ./tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
 RUN . ./export.sh && pytest --target esp32 -m qemu --embedded-services idf,qemu
 
 # additional python tools that maybe useful for some scripts
