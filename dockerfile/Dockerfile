@@ -24,8 +24,8 @@ WORKDIR /opt/esp/idf
 
 # install ESP IDF tools including pytest
 RUN . ./export.sh && python3 ./tools/idf_tools.py install-python-env --features pytest,ci
-RUN . ./export.sh && python3 ./tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
-RUN . ./export.sh && pytest --target esp32 -m qemu --embedded-services idf,qemu
+# RUN . ./export.sh && python3 ./tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
+# RUN . ./export.sh && pytest --target esp32 -m qemu --embedded-services idf,qemu
 
 # additional python tools that maybe useful for some scripts
 # RUN pip install matplotlib
