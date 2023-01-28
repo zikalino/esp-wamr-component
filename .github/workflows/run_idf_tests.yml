@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
       - run: |
           cd /opt/esp/idf
-          . export.sh
-          python3 tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
+          . ./export.sh
+          python3 ./tools/ci/ci_build_apps.py . --target esp32 -m qemu -vv --pytest-apps
           pytest --target esp32 -m qemu --embedded-services idf,qemu --build-dir=build_esp32_default
         name: Run in container
